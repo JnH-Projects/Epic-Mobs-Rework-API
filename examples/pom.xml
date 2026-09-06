@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+    <!--
+        Compiles every example in one pass, so they are known to build against the real API
+        jar rather than only to look right on the page.
+
+        This is not a template for your own plugin: a real plugin has one main class and one
+        plugin.yml. Copy the example you want, its plugin.yml block is in its javadoc header.
+    -->
+
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.example</groupId>
+    <artifactId>epicmobs-api-examples</artifactId>
+    <version>1.0</version>
+    <packaging>jar</packaging>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <maven.compiler.release>21</maven.compiler.release>
+    </properties>
+
+    <repositories>
+        <repository>
+            <id>spigot-repo</id>
+            <url>https://hub.spigotmc.org/nexus/content/repositories/snapshots/</url>
+        </repository>
+    </repositories>
+
+    <dependencies>
+
+        <!--
+            The API. system scope so this project builds straight out of the repository
+            with no install step; in your own plugin use provided scope after installing
+            the jar, as docs/01-getting-started.md shows.
+
+            Never compile scope, and never shaded: two copies of
+            me.jaymar921.epicmobs.api on one server are two different types.
+        -->
+        <dependency>
+            <groupId>me.JayMar921</groupId>
+            <artifactId>EpicMobsRework</artifactId>
+            <version>1.0-RC1</version>
+            <classifier>api</classifier>
+            <scope>system</scope>
+            <systemPath>${project.basedir}/../releases/1.0-RC1/EpicMobsRework-api.jar</systemPath>
+        </dependency>
+
+        <!--
+            The version Epic Mobs Rework itself is built against. The API only ever hands
+            you long-standing Bukkit types (Entity, Player, Location, ItemStack,
+            EntityType), so any reasonably recent Spigot or Paper API works here; change
+            this line to whatever your own plugin targets.
+        -->
+        <dependency>
+            <groupId>org.spigotmc</groupId>
+            <artifactId>spigot-api</artifactId>
+            <version>26.2-R0.1-SNAPSHOT</version>
+            <scope>provided</scope>
+        </dependency>
+
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.13.0</version>
+                <configuration>
+                    <release>${maven.compiler.release}</release>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+</project>
