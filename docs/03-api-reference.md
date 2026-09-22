@@ -44,7 +44,8 @@ EpicMobsProvider.find().ifPresent(this::hook);
 | `premium()` | `boolean` | whether this is the Premium build |
 | `canMutate()` | `boolean` | whether the four mutating calls will do anything |
 
-Gate on `apiVersion()`, not `version()`, when you need a capability:
+Gate on `apiVersion()`, not `version()`, when you need a capability. Plugin 1.1.0 is API
+v2, and v2 is where `EpicMobDefinitionView.mythicMob()` first appears:
 
 ```java
 if (api.apiVersion() < 2) {
@@ -160,6 +161,7 @@ One mob definition, before anything the world does to it.
 | `key()` | `String` | lower case. What every other method takes as an argument |
 | `displayName()` | `String` | the name the owner wrote, without colour codes |
 | `entityType()` | `EntityType` | the Bukkit type it spawns as |
+| `mythicMob()` | `Optional<String>` | the MythicMobs mob type it is built on, or empty for a plain Bukkit mob. Since API v2 |
 | `tier()` | `int` | 1 to 6 |
 | `health()` | `double` | the file's number, before scaling |
 | `damage()` | `double` | the file's number, before scaling |
@@ -177,6 +179,17 @@ List<EpicMobDefinitionView> bosses = api.getDefinitions().stream()
         .filter(EpicMobDefinitionView::boss)
         .sorted(Comparator.comparingInt(EpicMobDefinitionView::tier).reversed())
         .toList();
+```
+
+A definition can be built on a MythicMobs mob type instead of a vanilla entity. When it is,
+`mythicMob()` carries the MythicMobs internal name, the one you would pass to `/mm mobs
+spawn`, and `entityType()` still reports the Bukkit type underneath. When it is not,
+`mythicMob()` is empty and `entityType()` is the whole story. The `Optional` is never null.
+
+```java
+String origin = definition.mythicMob()
+        .map(name -> "MythicMobs " + name)
+        .orElse(definition.entityType().name());
 ```
 
 ---

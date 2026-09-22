@@ -20,9 +20,27 @@ You never implement these interfaces yourself, so a new method on `EpicMobsAPI` 
 
 ---
 
-## API v1 (plugin 1.0-RC1)
+## API v2 (plugin 1.1.0)
 
-The first published contract.
+One new method, nothing removed or renamed. Code built against v1 keeps compiling and
+keeps running.
+
+**`EpicMobDefinitionView`**
+
+- `mythicMob()`, returns `Optional<String>`. The MythicMobs mob type a definition is built
+  on, or empty for a definition that spawns a plain Bukkit entity. `entityType()` is
+  unchanged and still answers for every definition.
+
+Calling `mythicMob()` on a server that runs 1.0.0 throws `NoSuchMethodError`, because the
+method does not exist there. If your plugin uses it, either raise your minimum to v2 or
+check `api.apiVersion() >= 2` first and fall back to `entityType()`.
+
+Artifact: [`releases/1.1.0/EpicMobsRework-api.jar`](releases/1.1.0/EpicMobsRework-api.jar)
+
+## API v1 (plugin 1.0-RC1, 1.0.0)
+
+The first published contract. 1.0.0 shipped the same interfaces as the release candidate;
+the jar was rebuilt, the contract did not move.
 
 **Entry point**
 

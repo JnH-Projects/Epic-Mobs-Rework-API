@@ -30,8 +30,9 @@ two event handlers, one guarded API call. Everything else is a variation on this
 
 `/mobinfo`, `/mobinfo list`, `/mobinfo raid`, `/mobinfo me`, `/mobinfo <name>`. Every query
 the API offers, including the ones that are easy to miss: `damageByPlayer()`, `phase()`,
-`owner()`, `getDiscoveredCount`. Also shows `depend` plus `EpicMobsProvider.get()`, the
-right pattern for a plugin that is useless without Epic Mobs.
+`owner()`, `getDiscoveredCount`, and the 1.1.0 addition `mythicMob()`. Also shows `depend`
+plus `EpicMobsProvider.get()`, the right pattern for a plugin that is useless without Epic
+Mobs.
 
 ### 3. SpawnControlPlugin
 

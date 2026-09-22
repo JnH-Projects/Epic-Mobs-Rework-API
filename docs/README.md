@@ -19,6 +19,7 @@ Then read the [examples](../examples/README.md): seven complete plugins, smalles
 | --- | --- |
 | add the jar to my build | [Getting started, step 1](01-getting-started.md#step-1-add-the-dependency) |
 | know if an entity is an Epic Mob | [`isEpicMob`](03-api-reference.md#mobs-in-the-world) |
+| tell a MythicMobs-backed definition from a vanilla one | [`mythicMob`](03-api-reference.md#epicmobdefinitionview) |
 | stop a mob spawning somewhere | [`EpicMobPreSpawnEvent`](04-events.md#epicmobprespawnevent) |
 | change or block damage | [`EpicMobDamageEvent`](04-events.md#epicmobdamageevent) |
 | add or remove drops | [`EpicMobLootDropEvent`](04-events.md#epicmoblootdropevent) |

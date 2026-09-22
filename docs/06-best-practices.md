@@ -109,6 +109,21 @@ if (api.apiVersion() < REQUIRED_API) {
 New methods and new events bump `apiVersion()`. Compiling against a newer API jar than the
 server runs is what produces `NoSuchMethodError`, so state your minimum and check it.
 
+| `apiVersion()` | Plugin | Added |
+| --- | --- | --- |
+| 1 | 1.0-RC1, 1.0.0 | everything on the [reference page](03-api-reference.md) except the row below |
+| 2 | 1.1.0 | `EpicMobDefinitionView.mythicMob()` |
+
+If the only v2 method you touch is `mythicMob()`, you can keep a v1 minimum and branch on
+the version at the call site rather than refusing to enable:
+
+```java
+String origin = definition.entityType().name();
+if (api.apiVersion() >= 2 && definition.mythicMob().isPresent()) {
+    origin = "MythicMobs " + definition.mythicMob().get();
+}
+```
+
 ---
 
 ## Writing for both editions
