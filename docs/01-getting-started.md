@@ -21,7 +21,7 @@ You do **not** need the plugin jar to compile. You compile against
 
 ## Step 1: add the dependency
 
-Download [`EpicMobsRework-api.jar`](../releases/1.0-RC1/EpicMobsRework-api.jar), then pick
+Download [`EpicMobsRework-api.jar`](../releases/1.1.0/EpicMobsRework-api.jar), then pick
 one of the three ways below.
 
 ### Maven (install to your local repository)
@@ -31,7 +31,7 @@ mvn install:install-file \
   -Dfile=EpicMobsRework-api.jar \
   -DgroupId=me.JayMar921 \
   -DartifactId=EpicMobsRework \
-  -Dversion=1.0-RC1 \
+  -Dversion=1.1.0 \
   -Dclassifier=api \
   -Dpackaging=jar
 ```
@@ -40,7 +40,7 @@ mvn install:install-file \
 <dependency>
     <groupId>me.JayMar921</groupId>
     <artifactId>EpicMobsRework</artifactId>
-    <version>1.0-RC1</version>
+    <version>1.1.0</version>
     <classifier>api</classifier>
     <scope>provided</scope>
 </dependency>
@@ -52,7 +52,7 @@ mvn install:install-file \
 <dependency>
     <groupId>me.JayMar921</groupId>
     <artifactId>EpicMobsRework</artifactId>
-    <version>1.0-RC1</version>
+    <version>1.1.0</version>
     <classifier>api</classifier>
     <scope>system</scope>
     <systemPath>${project.basedir}/libs/EpicMobsRework-api.jar</systemPath>

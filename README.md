@@ -17,7 +17,7 @@ EpicMobsProvider.find().ifPresent(api -> {
 
 | | |
 | --- | --- |
-| **Queries** | live mobs, definitions, raids, arenas, per-player kill and codex counts |
+| **Queries** | live mobs, definitions (including their MythicMobs type), raids, arenas, per-player kill and codex counts |
 | **Events** | 11 Bukkit events covering spawn, damage, death, abilities, loot, raids and companions |
 | **Mutation** | spawn a mob, remove a mob, start a raid, stop a raid (Premium only) |
 
@@ -53,9 +53,14 @@ See [examples/README.md](examples/README.md) for how to build and run them.
 
 ## Downloads
 
-| Version | Artifact |
-| --- | --- |
-| 1.0-RC1 | [`EpicMobsRework-api.jar`](releases/1.0-RC1/EpicMobsRework-api.jar) |
+| Plugin | `apiVersion()` | Artifact |
+| --- | --- | --- |
+| 1.1.0 | 2 | [`EpicMobsRework-api.jar`](releases/1.1.0/EpicMobsRework-api.jar) |
+| 1.0.0 | 1 | [`EpicMobsRework-api.jar`](releases/1.0.0/EpicMobsRework-api.jar) |
+| 1.0-RC1 | 1 | [`EpicMobsRework-api.jar`](releases/1.0-RC1/EpicMobsRework-api.jar) |
+
+Build against the newest jar unless you need to run on an older server. What changed
+between them is in [CHANGELOG.md](CHANGELOG.md).
 
 The API jar contains interfaces and events only. It has no dependencies of its own beyond
 the Bukkit API you already have, and it is always `provided` scope: the real implementation

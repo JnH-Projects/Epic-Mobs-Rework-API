@@ -43,10 +43,10 @@
         <dependency>
             <groupId>me.JayMar921</groupId>
             <artifactId>EpicMobsRework</artifactId>
-            <version>1.0-RC1</version>
+            <version>1.1.0</version>
             <classifier>api</classifier>
             <scope>system</scope>
-            <systemPath>${project.basedir}/../releases/1.0-RC1/EpicMobsRework-api.jar</systemPath>
+            <systemPath>${project.basedir}/../releases/1.1.0/EpicMobsRework-api.jar</systemPath>
         </dependency>
 
         <!--

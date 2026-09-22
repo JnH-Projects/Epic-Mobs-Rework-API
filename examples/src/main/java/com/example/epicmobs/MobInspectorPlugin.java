@@ -166,7 +166,12 @@ public final class MobInspectorPlugin extends JavaPlugin {
                 definition -> {
                     player.sendMessage(ChatColor.GOLD + definition.displayName()
                             + ChatColor.GRAY + "  (" + definition.key() + ")");
+                    // mythicMob() is empty for a vanilla-backed definition, so the extra text
+                    // only shows up when there is a MythicMobs type to name. API v2 and later.
                     player.sendMessage(ChatColor.GRAY + "  type " + ChatColor.WHITE + definition.entityType()
+                            + definition.mythicMob()
+                                    .map(name -> ChatColor.GRAY + " via MythicMobs " + ChatColor.WHITE + name)
+                                    .orElse("")
                             + ChatColor.GRAY + "   tier " + ChatColor.WHITE + definition.tier());
                     // File numbers, before player-count scaling. A spawned mob may have more.
                     player.sendMessage(ChatColor.GRAY + "  base health " + ChatColor.WHITE + round(definition.health())
