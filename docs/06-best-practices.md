@@ -112,7 +112,7 @@ server runs is what produces `NoSuchMethodError`, so state your minimum and chec
 | `apiVersion()` | Plugin | Added |
 | --- | --- | --- |
 | 1 | 1.0-RC1, 1.0.0 | everything on the [reference page](03-api-reference.md) except the row below |
-| 2 | 1.1.0 | `EpicMobDefinitionView.mythicMob()` |
+| 2 | 1.1.0, 1.2.0 | `EpicMobDefinitionView.mythicMob()` |
 
 If the only v2 method you touch is `mythicMob()`, you can keep a v1 minimum and branch on
 the version at the call site rather than refusing to enable:

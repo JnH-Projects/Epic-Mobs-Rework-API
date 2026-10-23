@@ -67,6 +67,30 @@ It does still fire `EpicMobPreSpawnEvent` with the reason `developer API`, so yo
 listeners, and every other plugin's, still see it and can still cancel or relocate it. A
 cancelled pre-spawn is one more way `spawn` returns empty.
 
+### From plugin 1.2.0: the mob is yours
+
+A mob you spawn carries an `epicmobsrework:held` tag in its persistent data, and Epic Mobs
+leaves its lifetime to you:
+
+| Epic Mobs never | Up to 1.1.1 it did |
+| --- | --- |
+| despawns it in the population cleanup | when the world went over `cleanup.trigger-above`, at random |
+| saves it to `pending.yml` when its chunk unloads | and spawned a fresh copy when a player came back |
+| saves it at shutdown, whatever `despawns:` says | and spawned a fresh copy on the next start |
+| clears it from an arena room when a run there ends | if it was standing in the room |
+
+A fresh copy is a new entity, so whatever you tagged the original with, and whatever you
+were tracking it by, is gone from it. That is what went wrong for Epic Lairs: a lair boss
+came back after the lair had reset, without the lair's tag, and nothing ever removed it.
+
+Removing it is now your job, with [`remove`](#removeentity-entity) or with
+`Entity.remove()`. `/ep clear` still removes it, because that is an admin asking for every
+Epic Mob gone. Everything else is unchanged: abilities, phases, the boss bar, loot,
+rewards and every event work exactly as they do for any Epic Mob.
+
+This is a behaviour change, not a shape change, so `apiVersion()` stays 2. On a 1.1.x
+server the table's right-hand column still applies.
+
 ```java
 // Spawn a whole pack in a ring
 Location centre = player.getLocation();

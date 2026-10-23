@@ -20,6 +20,24 @@ You never implement these interfaces yourself, so a new method on `EpicMobsAPI` 
 
 ---
 
+## API v2, unchanged (plugin 1.2.0)
+
+No method, event or field changed, so `apiVersion()` stays 2 and the jar holds the same
+classes as 1.1.0's. One behaviour changed, and it is on `spawn`:
+
+**A mob from `EpicMobsAPI.spawn` belongs to the caller.** It carries an
+`epicmobsrework:held` persistent-data tag, and Epic Mobs never despawns it in the
+population cleanup, never saves it when its chunk unloads or the server stops, never
+brings a copy back later, and never clears it from an arena room. Up to 1.1.1 it did all
+four, and a copy brought back is a new entity without whatever you tagged the original
+with. Remove it yourself with `remove(Entity)` or `Entity.remove()`. See
+[Mutation](docs/05-mutation.md#from-plugin-120-the-mob-is-yours).
+
+The plugin is built against Spigot 26.3 from this release and runs from 1.16.5 up on
+Spigot and Paper.
+
+Artifact: [`releases/1.2.0/EpicMobsRework-api.jar`](releases/1.2.0/EpicMobsRework-api.jar)
+
 ## API v2 (plugin 1.1.0)
 
 One new method, nothing removed or renamed. Code built against v1 keeps compiling and
