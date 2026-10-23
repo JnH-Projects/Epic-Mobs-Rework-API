@@ -43,10 +43,10 @@
         <dependency>
             <groupId>me.JayMar921</groupId>
             <artifactId>EpicMobsRework</artifactId>
-            <version>1.1.0</version>
+            <version>1.2.0</version>
             <classifier>api</classifier>
             <scope>system</scope>
-            <systemPath>${project.basedir}/../releases/1.1.0/EpicMobsRework-api.jar</systemPath>
+            <systemPath>${project.basedir}/../releases/1.2.0/EpicMobsRework-api.jar</systemPath>
         </dependency>
 
         <!--
@@ -58,7 +58,7 @@
         <dependency>
             <groupId>org.spigotmc</groupId>
             <artifactId>spigot-api</artifactId>
-            <version>26.2-R0.1-SNAPSHOT</version>
+            <version>26.3-R0.1-SNAPSHOT</version>
             <scope>provided</scope>
         </dependency>
 

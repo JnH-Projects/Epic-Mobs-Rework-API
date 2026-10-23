@@ -1,6 +1,6 @@
 # Epic Mobs Rework: Developer API
 
-The public developer API for [Epic Mobs Rework](https://jhprojects.vercel.app/epic-mobs-rework),
+The public developer API for [Epic Mobs Rework](https://www.jhprojects.dev/epic-mobs-rework),
 a Spigot plugin for custom mobs, bosses, raids, arenas and companions.
 
 This repository contains the API artifact, the documentation and runnable examples.
@@ -55,6 +55,7 @@ See [examples/README.md](examples/README.md) for how to build and run them.
 
 | Plugin | `apiVersion()` | Artifact |
 | --- | --- | --- |
+| 1.2.0 | 2 | [`EpicMobsRework-api.jar`](releases/1.2.0/EpicMobsRework-api.jar) |
 | 1.1.0 | 2 | [`EpicMobsRework-api.jar`](releases/1.1.0/EpicMobsRework-api.jar) |
 | 1.0.0 | 1 | [`EpicMobsRework-api.jar`](releases/1.0.0/EpicMobsRework-api.jar) |
 | 1.0-RC1 | 1 | [`EpicMobsRework-api.jar`](releases/1.0-RC1/EpicMobsRework-api.jar) |
@@ -87,6 +88,6 @@ source and is covered by that project's own license, not by this one.
 
 | | |
 | --- | --- |
-| Plugin page | <https://jhprojects.vercel.app/epic-mobs-rework> |
+| Plugin page | <https://www.jhprojects.dev/epic-mobs-rework> |
 | Issues with this API | [open an issue](../../issues) |
 | API changes by version | [CHANGELOG.md](CHANGELOG.md) |
