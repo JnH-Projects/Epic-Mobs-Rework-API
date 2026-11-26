@@ -20,6 +20,31 @@ You never implement these interfaces yourself, so a new method on `EpicMobsAPI` 
 
 ---
 
+## API v2, unchanged (plugin 1.3.0 to 1.6.0)
+
+No method, event or field changed in these four releases, so `apiVersion()` stays 2 and
+the 1.6.0 jar holds the same 19 classes as 1.2.0's. Two behaviours are worth knowing.
+
+**From plugin 1.3.0, Folia.** The same plugin jar runs on Folia, which has no single main
+thread. Call `spawn` from the region thread that owns the location, through Folia's region
+scheduler. From any other thread it returns empty rather than throwing. Events are fired on
+the thread that raised them, which on Folia is a region thread. See
+[Core concepts](docs/02-core-concepts.md#on-folia) and
+[Mutation](docs/05-mutation.md#on-folia).
+
+**From plugin 1.6.0, `getKiller()` can name a player vanilla does not.** On
+`EpicMobDeathEvent` and `EpicMobLootDropEvent`, `getKiller()` is still vanilla's killer
+whenever vanilla names one. When it names nobody and
+[Histoblock](https://www.jhprojects.dev/histoblock) 1.1.0 or newer is installed, it is the
+player Histoblock credits: the one who lit the TNT, threw the potion, or knocked the mob
+into lava a moment before it died. Loot, rewards, kill counts, raids and arenas are credited
+to the same player, so `getKillCount(killer, ...)` still already includes the kill. Without
+Histoblock, or with `integrations.histoblock.kill-credit: false`, nothing changes. A mob or
+block behind the death still gives null. See
+[Events](docs/04-events.md#epicmobdeathevent).
+
+Artifact: [`releases/1.6.0/EpicMobsRework-api.jar`](releases/1.6.0/EpicMobsRework-api.jar)
+
 ## API v2, unchanged (plugin 1.2.0)
 
 No method, event or field changed, so `apiVersion()` stays 2 and the jar holds the same
