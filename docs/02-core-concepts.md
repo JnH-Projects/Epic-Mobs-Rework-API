@@ -168,6 +168,22 @@ Bukkit.getScheduler().runTaskAsynchronously(this, () -> {
 
 Every event is fired on the main thread, so a handler is always already in the right place.
 
+### On Folia
+
+From plugin 1.3.0 the same jar runs on Folia, which has no single main thread: each region
+of the world ticks on its own thread, and plugin state without a place ticks on the global
+region thread. Two things change for a caller:
+
+- **`spawn` must be called from the region thread that owns the location**, through Folia's
+  region scheduler. From any other thread it returns empty rather than throwing. See
+  [Mutation](05-mutation.md#on-folia).
+- **An event is fired on the thread that raised it.** A death, a hit or a loot drop arrives
+  on the region thread that owns the mob, so the mob and anything next to it are safe to
+  touch from the handler. Something in another region is not; schedule that onto its own
+  region.
+
+On Spigot and Paper both of these are the main thread and nothing here applies.
+
 ---
 
 Next: [API reference](03-api-reference.md)

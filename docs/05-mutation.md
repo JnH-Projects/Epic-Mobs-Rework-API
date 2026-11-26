@@ -55,6 +55,7 @@ Returns empty when any of these is true:
 | the definition is unknown | `api.getDefinition(key).isEmpty()` |
 | the world is gone | `where.getWorld() == null` |
 | the server refused the entity | rare, usually a chunk or entity limit |
+| the call came from the wrong Folia region | see [On Folia](#on-folia) below |
 | this is the Lite build | `!api.canMutate()` |
 
 If you want a specific message per case, check the first three yourself before calling.
@@ -66,6 +67,21 @@ plugin is impossible to debug from the other side of an API.
 It does still fire `EpicMobPreSpawnEvent` with the reason `developer API`, so your own
 listeners, and every other plugin's, still see it and can still cancel or relocate it. A
 cancelled pre-spawn is one more way `spawn` returns empty.
+
+### On Folia
+
+From plugin 1.3.0 the plugin runs on Folia, where an entity can only be created by the
+region thread that owns its location. Call `spawn` from there, through Folia's region
+scheduler; from any other thread it returns empty rather than throwing.
+
+```java
+// Folia: hop onto the region that owns the location, then spawn.
+Bukkit.getRegionScheduler().execute(this, location,
+        () -> api.spawn("crypt warden", location));
+```
+
+On Spigot and Paper the main thread owns everything, so a command handler or a listener can
+call `spawn` directly, as in the examples above.
 
 ### From plugin 1.2.0: the mob is yours
 

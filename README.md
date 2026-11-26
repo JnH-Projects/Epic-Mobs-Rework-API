@@ -55,6 +55,7 @@ See [examples/README.md](examples/README.md) for how to build and run them.
 
 | Plugin | `apiVersion()` | Artifact |
 | --- | --- | --- |
+| 1.6.0 | 2 | [`EpicMobsRework-api.jar`](releases/1.6.0/EpicMobsRework-api.jar) |
 | 1.2.0 | 2 | [`EpicMobsRework-api.jar`](releases/1.2.0/EpicMobsRework-api.jar) |
 | 1.1.0 | 2 | [`EpicMobsRework-api.jar`](releases/1.1.0/EpicMobsRework-api.jar) |
 | 1.0.0 | 1 | [`EpicMobsRework-api.jar`](releases/1.0.0/EpicMobsRework-api.jar) |
@@ -71,9 +72,12 @@ comes from the plugin at runtime.
 
 | | |
 | --- | --- |
-| Java | 21 |
-| Server | Spigot or Paper |
+| Java | 16 or newer. The jar is compiled for 16, so a plugin built on 21 uses it as is |
+| Server | Spigot, Paper or Folia, 1.16.5 to 26.3 (Folia from plugin 1.3.0) |
 | Plugin | Epic Mobs Rework installed on the server at runtime |
+
+1.3.0, 1.4.0 and 1.5.0 shipped the same API as 1.2.0 and have no jar of their own here:
+build against 1.2.0's or 1.6.0's, they hold the same classes.
 
 ## License
 
