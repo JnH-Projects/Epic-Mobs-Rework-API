@@ -3,7 +3,8 @@
 [Index](README.md) | Prev: [API reference](03-api-reference.md) | Next: [Mutation](05-mutation.md)
 
 Eleven events, all in `me.jaymar921.epicmobs.api.event`, all extending `EpicMobsEvent`,
-all fired on the main thread, all working in both editions.
+all fired on the main thread (on Folia, the region thread that raised them, see
+[Core concepts](02-core-concepts.md#on-folia)), all working in both editions.
 
 They are ordinary Bukkit events. Register a `Listener`, annotate with `@EventHandler`, done.
 You do not need the API instance to receive them.
@@ -162,7 +163,16 @@ Fired after the registry is updated, before loot and rewards. **Not cancellable.
 | Accessor | Type | Notes |
 | --- | --- | --- |
 | `getMob()` | `EpicMobHandle` | still answers, with `alive()` false |
-| `getKiller()` | `Player` | null for a mob that died to fall damage, fire, another mob, or `/kill` |
+| `getKiller()` | `Player` | null for a mob that died to fall damage, fire, another mob, or `/kill` with no player behind it |
+
+**Who counts as the killer.** Vanilla's `getKiller()` whenever it names someone. From
+plugin 1.6.0, when it names nobody and [Histoblock](https://www.jhprojects.dev/histoblock)
+1.1.0 or newer is installed, the player Histoblock credits instead: the one who lit the
+TNT, threw the potion, or knocked the mob into lava or off a cliff a moment before it died.
+Epic Mobs pays loot and rewards, counts the kill, and credits raids and arenas to that same
+player, and `EpicMobLootDropEvent.getKiller()` is the same player too. A mob or a block
+behind the death still gives null, and so does a server without Histoblock or with
+`integrations.histoblock.kill-credit: false`.
 
 The handle still works. `damageByPlayer()` in particular is how you reward a whole party
 rather than only the last hit.
